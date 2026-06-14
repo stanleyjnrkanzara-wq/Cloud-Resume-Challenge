@@ -64,32 +64,8 @@ This isn't just a static resume page. It's a **full-stack serverless application
 ## 🏗️ Architecture
 
 ```
-┌─────────────┐     HTTPS      ┌──────────────────────┐
-│   Browser   │◄──────────────►│     CloudFront       │
-│  (Visitor)  │                │   (CDN + HTTPS)      │
-└──────┬──────┘                └──────────┬───────────┘
-       │                                  │
-       │         GET /prod/count          │
-       └──────────────────────────────────┘
-                                          │
-                                   ┌──────▼────────┐
-                                   │  API Gateway  │
-                                   │  (REST API)   │
-                                   │  /prod/count  │  ← Stage: prod, Resource: /count
-                                   └──────┬────────┘
-                                          │
-                                   ┌──────▼────────┐
-                                   │    Lambda     │
-                                   │   (Python)    │
-                                   │  Boto3 + JSON │
-                                   └──────┬────────┘
-                                          │
-                                   ┌──────▼────────┐
-                                   │   DynamoDB    │
-                                   │  Atomic Incr. │
-                                   │   id: count   │
-                                   └───────────────┘
-```
+<img width="796" height="482" alt="cloud resume challenge architecture diagram" src="https://github.com/user-attachments/assets/36fa3a6e-871d-46ad-bdd7-fe06f09ed724" />
+
 
 **Data Flow:**
 1. Visitor loads resume from **CloudFront edge location** (low latency)
@@ -226,22 +202,15 @@ This section is why this README stands out. These aren't tutorial steps. These a
 ## 📸 Project Gallery
 
 ### Architecture Diagram
-![Architecture](screenshots/architecture.png)
+<img width="796" height="482" alt="cloud resume challenge architecture diagram" src="https://github.com/user-attachments/assets/8f38181a-9a01-412f-8020-82042fea689a" />
 
 ### Live Resume (Dark Theme)
-![Resume](screenshots/resume-live.png)
+<img width="1139" height="657" alt="my resume is live for everyone to view" src="https://github.com/user-attachments/assets/27debfd5-08c9-4519-a89f-5baf4a518e7b" />
+
 
 ### Visitor Counter in Action
-![Counter](screenshots/counter-increment.gif)
+<img width="1366" height="720" alt="FULL STACK CLOUD RESUME IS LIVE S3 frontend+API Gateway+Lambda +Dynamo DB 3" src="https://github.com/user-attachments/assets/eb4ba39b-f59b-4311-969b-e065b1fb71b4" />
 
-### AWS Console — Resources Deployed
-![AWS Console](screenshots/aws-resources.png)
-
-### Terraform Apply Output
-![Terraform](screenshots/terraform-apply.png)
-
-### GitHub Actions Pipeline
-![CI/CD](screenshots/github-actions.png)
 
 ---
 
