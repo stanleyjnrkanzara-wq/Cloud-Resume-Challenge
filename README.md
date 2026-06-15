@@ -40,7 +40,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 🏛️ Architecture
+##  Architecture
 
 ```mermaid
 graph TB
@@ -108,7 +108,7 @@ S3 has two endpoints: a bucket API endpoint and a static website endpoint. I poi
 
 The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to i[...]
 
-### 🛡️ CORS blocked the frontend from calling the API
+###  CORS blocked the frontend from calling the API
 
 Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Respo[...]
 
