@@ -1,4 +1,4 @@
-# ☁️ Cloud Resume Challenge
+# 🚀 Cloud Resume Challenge
 
 <div align="center">
 
@@ -9,13 +9,13 @@
 
 **A serverless resume website built on AWS Free Tier with a live visitor counter.**
 
-[🌐 Live Demo](https://YOUR_CLOUDFRONT_URL) • [💻 Source Code](https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge)
+[🌍 Live Demo](https://YOUR_CLOUDFRONT_URL) • [📦 Source Code](https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge)
 
 </div>
 
 ---
 
-## 🎯 What I Built
+## ✨ What I Built
 
 A full-stack serverless resume that tracks every visitor. **Refresh the page and watch the counter grow.**
 
@@ -31,7 +31,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 📸 Project Gallery
+## 🎨 Project Gallery
 
 | Live Resume | Architecture | CI/CD Pipeline |
 |:-----------:|:------------:|:--------------:|
@@ -40,16 +40,16 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 🏗️ Architecture
+## 🏛️ Architecture
 
 ```mermaid
 graph TB
-    User["👤 Visitor<br/>Your Browser"]
-    CF["☁️ CloudFront<br/>Global CDN + HTTPS"]
-    S3["🪣 S3 Bucket<br/>Static Site Hosting"]
-    APIGW["🔌 API Gateway<br/>REST Endpoint"]
-    Lambda["Λ Lambda<br/>Python 3.11"]
-    DDB["⚙️ DynamoDB<br/>Atomic Counter"]
+    User["👨‍💻 Visitor<br/>Your Browser"]
+    CF["🌐 CloudFront<br/>Global CDN + HTTPS"]
+    S3["📦 S3 Bucket<br/>Static Site Hosting"]
+    APIGW["🔗 API Gateway<br/>REST Endpoint"]
+    Lambda["⚡ Lambda<br/>Python 3.11"]
+    DDB["💾 DynamoDB<br/>Atomic Counter"]
     
     GH["🐙 GitHub<br/>Source Code"]
     GHA["⚙️ GitHub Actions<br/>CI/CD Pipeline"]
@@ -98,23 +98,23 @@ graph TB
 
 ---
 
-## 🐛 What Broke & How I Fixed It
+## 🔧 What Broke & How I Fixed It
 
-### 504 Gateway Timeout — CloudFront could not reach S3
+### ⚠️ 504 Gateway Timeout — CloudFront could not reach S3
 
 S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-us-e[...]
 
-### Missing Authentication Token — API Gateway path mismatch
+### 🚫 Missing Authentication Token — API Gateway path mismatch
 
 The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to i[...]
 
-### CORS blocked the frontend from calling the API
+### 🛡️ CORS blocked the frontend from calling the API
 
 Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Respo[...]
 
 ---
 
-## 💰 Cost Breakdown
+## 💳 Cost Breakdown
 
 | Service | Usage | Cost |
 |---------|-------|------|
@@ -144,7 +144,7 @@ terraform destroy  # Clean up when done — zero cost
 
 ---
 
-## 👨‍💻 About Me
+## 👤 About Me
 
 Cloud & DevOps enthusiast. **AWS Certified Cloud Practitioner.** Built this to prove I can ship production infrastructure, not just study certifications.
 
