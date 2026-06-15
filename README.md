@@ -60,15 +60,15 @@ graph TB
     GHA -->|deploy| TF
     TF -->|provision| CF
     
-    style User fill:#9370DB,stroke:#333,stroke-width:2px
-    style CF fill:#9370DB,stroke:#333,stroke-width:2px
-    style S3 fill:#9370DB,stroke:#333,stroke-width:2px
-    style APIGW fill:#9370DB,stroke:#333,stroke-width:2px
-    style Lambda fill:#9370DB,stroke:#333,stroke-width:2px
-    style DDB fill:#9370DB,stroke:#333,stroke-width:2px
-    style GH fill:#9370DB,stroke:#333,stroke-width:2px
-    style GHA fill:#9370DB,stroke:#333,stroke-width:2px
-    style TF fill:#9370DB,stroke:#333,stroke-width:2px
+    style User fill:#4B0082,stroke:#333,stroke-width:2px
+    style CF fill:#4B0082,stroke:#333,stroke-width:2px
+    style S3 fill:#4B0082,stroke:#333,stroke-width:2px
+    style APIGW fill:#4B0082,stroke:#333,stroke-width:2px
+    style Lambda fill:#4B0082,stroke:#333,stroke-width:2px
+    style DDB fill:#4B0082,stroke:#333,stroke-width:2px
+    style GH fill:#4B0082,stroke:#333,stroke-width:2px
+    style GHA fill:#4B0082,stroke:#333,stroke-width:2px
+    style TF fill:#4B0082,stroke:#333,stroke-width:2px
 ```
 
 | Layer | Service | Purpose |
