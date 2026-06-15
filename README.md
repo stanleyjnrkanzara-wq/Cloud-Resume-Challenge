@@ -9,7 +9,7 @@
 
 **A serverless resume website built on AWS Free Tier with a live visitor counter.**
 
-[🌐 Live Demo](https://d1x27lc5lrvrkm.cloudfront.net) • [💻 Source Code](https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge) • [📋 Quick Start](#-quick-deploy)
+[🌐 Live Demo](https://d1x27lc5lrvrkm.cloudfront.net) • [💻 Source Code](https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge)
 
 </div>
 
@@ -17,22 +17,17 @@
 
 ## 🎯 What I Built
 
-A full-stack serverless resume that tracks every visitor in real-time. **Refresh the page and watch the counter grow.**
+A full-stack serverless resume that tracks every visitor. **Refresh the page and watch the counter grow.**
 
-> **Key Insight:** Every layer is real production infrastructure, every service is managed by AWS, and the bill is $0.00/month.
+```
+Browser → CloudFront (CDN + HTTPS) → S3 (static site)
+              ↓
+         JavaScript calls API
+              ↓
+    API Gateway → Lambda (Python) → DynamoDB (counter)
+```
 
-### Tech Stack at a Glance
-```
-Browser 🧑‍💻
-    ↓
-CloudFront (CDN + HTTPS) ⚡
-    ↓
-S3 Static Website 📁
-    ↓ (API Call)
-    ├─→ API Gateway 🔗
-        └─→ Lambda (Python) 🐍
-            └─→ DynamoDB 📊
-```
+**Every layer is real, every service is managed, and the bill is $0.00.**
 
 ---
 
@@ -76,17 +71,15 @@ graph TB
     style TF fill:#623CE4,stroke:#4c1fa8,stroke-width:2px,color:#fff
 ```
 
-### Service Details
-
-| 🔷 Layer | 🔹 Service | 📝 Purpose | 💡 Why |
-|:--------:|:----------:|:----------|:-------|
-| **Frontend** | HTML/CSS/JS + S3 | Static resume with dark theme | Zero server maintenance |
-| **CDN** | CloudFront | Global HTTPS delivery + edge caching | Sub-100ms latency worldwide |
-| **API** | API Gateway | REST endpoint at `/prod/count` | Secure, scalable API |
-| **Compute** | Lambda (Python) | Serverless visitor counter | Pay-per-invocation pricing |
-| **Database** | DynamoDB | Atomic increment, no race conditions | Fully managed, no admin overhead |
-| **IaC** | Terraform | Infrastructure as code | Reproducible, version-controlled infra |
-| **CI/CD** | GitHub Actions | Push-to-deploy pipeline | Automatic deployments on git push |
+| Layer | Service | Purpose |
+|-------|---------|---------|
+| **Frontend** | HTML/CSS/JS + S3 | Static resume with dark theme |
+| **CDN** | CloudFront | Global HTTPS delivery |
+| **API** | API Gateway | REST endpoint at `/prod/count` |
+| **Compute** | Lambda (Python) | Serverless visitor counter |
+| **Database** | DynamoDB | Atomic increment, no race conditions |
+| **IaC** | Terraform | Infrastructure as code |
+| **CI/CD** | GitHub Actions | Push-to-deploy pipeline |
 
 ---
 
@@ -94,7 +87,7 @@ graph TB
 
 ### 🔴 504 Gateway Timeout — CloudFront couldn't reach S3
 
-**Problem:** S3 has two endpoints: a bucket API endpoint and a static website endpoint. I initially pointed CloudFront to the bucket endpoint, which requires signed requests.
+**Problem:** S3 has two endpoints: a bucket API endpoint and a static website endpoint. I had pointed CloudFront to the bucket endpoint, which requires signed requests.
 
 **Solution:** 
 ```
@@ -107,7 +100,7 @@ graph TB
 
 ### 🔴 Missing Authentication Token — API Gateway path mismatch
 
-**Problem:** The invoke URL was incomplete. API Gateway requires the full path including stage and resource.
+**Problem:** The invoke URL needs the full path including stage and resource. I was missing the `/prod/count` path.
 
 **Solution:**
 ```bash
@@ -116,19 +109,19 @@ https://abc123.execute-api.us-east-1.amazonaws.com/
 
 # ✅ Correct
 https://abc123.execute-api.us-east-1.amazonaws.com/prod/count
-                                                      ╰─ stage
-                                                            ╰─ resource
+                                                   ╰─ stage
+                                                         ╰─ resource
 ```
 
 ---
 
 ### 🔴 CORS blocked the frontend from calling the API
 
-**Problem:** Browsers enforce cross-origin security by default.
+**Problem:** Browsers enforce cross-origin security by default, blocking API calls.
 
 **Solution:**
 ```
-✓ Enable CORS on the API Gateway `/count` resource
+✓ Enable CORS on the API Gateway /count resource
 ✓ Add header: Access-Control-Allow-Origin: *
 ✓ Map headers in both Method Response & Integration Response
 ✓ Test with curl: curl -H "Origin: ..." https://api-endpoint
@@ -138,87 +131,41 @@ https://abc123.execute-api.us-east-1.amazonaws.com/prod/count
 
 ## 💰 Cost Breakdown
 
-| Service | Usage | Cost | Free Tier? |
-|:-------:|:-----:|:----:|:----------:|
-| 📁 S3 | ~1 MB storage | **$0.00** | ✅ 5 GB/month |
-| ⚡ CloudFront | < 1 GB transfer | **$0.00** | ✅ 1 TB/month |
-| 🔗 API Gateway | < 1,000 requests | **$0.00** | ✅ 1M reqs/month |
-| 🐍 Lambda | < 1,000 invocations | **$0.00** | ✅ 1M invocations/month |
-| 📊 DynamoDB | On-demand, 1 item | **$0.00** | ✅ 25 GB free tier |
-| **Total** | | **$0.00/month** | ✅ 100% Free |
+| Service | Usage | Cost |
+|---------|-------|------|
+| S3 | ~1 MB storage | $0.00 |
+| CloudFront | < 1 GB transfer | $0.00 |
+| API Gateway | < 1,000 requests | $0.00 |
+| Lambda | < 1,000 invocations | $0.00 |
+| DynamoDB | On-demand, 1 item | $0.00 |
+| **Total** | | **$0.00/month** |
+
+Entirely within AWS Free Tier.
 
 ---
 
 ## 🚀 Quick Deploy
 
-### Prerequisites
 ```bash
-✓ AWS Account (free tier)
-✓ Terraform installed
-✓ AWS CLI configured
-✓ Git
-```
-
-### Deployment Steps
-
-```bash
-# Clone the repository
 git clone https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge.git
-cd Cloud-Resume-Challenge
-
-# Initialize and deploy infrastructure
-cd terraform
-terraform init
-terraform apply          # Review and confirm
-
-# Deploy the frontend
+cd Cloud-Resume-Challenge/terraform
+terraform init && terraform apply
 aws s3 cp ../index.html s3://$(terraform output -raw bucket_name)/index.html
-
-# Get your live URL
-terraform output cloudfront_domain_name
 ```
 
-### Cleanup (Zero Cost)
-
+**Cleanup (zero cost):**
 ```bash
-# Destroy all resources
-terraform destroy        # Review and confirm
-
-# ✅ No ongoing charges
+terraform destroy  # Clean up when done
 ```
-
----
-
-## 📊 Project Stats
-
-- **Lines of Code:** 200+ (Lambda + Frontend)
-- **AWS Services:** 5 (S3, CloudFront, API Gateway, Lambda, DynamoDB)
-- **Infrastructure Code:** 150+ lines of Terraform
-- **Deployment Time:** < 5 minutes
-- **Time to First Visitor:** Instant ✨
 
 ---
 
 ## 👨‍💻 About Me
 
-**Cloud & DevOps enthusiast.** AWS Certified Cloud Practitioner.
+Cloud & DevOps enthusiast. AWS Certified Cloud Practitioner. Built this to prove I can ship production infrastructure, not just study certifications.
 
-Built this to prove I can **ship production infrastructure**, not just study certifications.
-
-### Connect With Me
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/stanleyjnrkanzara-wq)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:stanleyjnrkanzara@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/stanleyjnrkanzara-wq)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=flat&logo=gmail&logoColor=white)](mailto:stanleyjnrkanzara@gmail.com)
 
 **📍 Pretoria, South Africa** | Open to cloud and DevOps roles
-
----
-
-<div align="center">
-
-### ⭐ If this helped you, consider giving it a star!
-
-**[View Live Demo](https://d1x27lc5lrvrkm.cloudfront.net)** • **[Fork & Deploy](https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge/fork)**
-
-</div>
