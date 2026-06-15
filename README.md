@@ -24,7 +24,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
               ↓
          JavaScript calls API
               ↓
-    API Gateway → Lambda (Python) → DynamoDB (counter)
+     API Gateway → Lambda (Python) → DynamoDB (counter)
 ```
 
 **Every layer is real, every service is managed, and the bill is $0.00.**
@@ -35,8 +35,11 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 | Live Resume | Architecture | CI/CD Pipeline |
 |:-----------:|:------------:|:--------------:|
-| ![Resume](screenshots/resume-live.png) | ![Architecture](screenshots/architecture-diagram.png) | ![GitHub Actions](screenshots/github-actions.png) |
-| Dark-themed UI with visitor counter | Full serverless stack on AWS | Automated deploy on every push |
+| 🌐 Dark-themed UI | 🏗️ Serverless Stack | ⚙️ Auto-Deploy |
+| Interactive visitor counter | Full AWS infrastructure | Push-to-production |
+| Real-time counter updates | DynamoDB + Lambda | GitHub Actions |
+
+*Screenshots coming soon – add your screenshots to the `/screenshots` directory and update paths above.*
 
 ---
 
@@ -74,15 +77,15 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ### 504 Gateway Timeout — CloudFront could not reach S3
 
-S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-website-us-east-1.amazonaws.com`) with HTTP-only origin protocol.
+S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-website-us-east-1.amazonaws.com`).
 
 ### Missing Authentication Token — API Gateway path mismatch
 
-The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree, redeployed the stage, and the counter started working.
+The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to include both.
 
 ### CORS blocked the frontend from calling the API
 
-Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Response, then redeployed.
+Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Response.
 
 ---
 
