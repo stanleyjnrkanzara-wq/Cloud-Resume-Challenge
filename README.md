@@ -1,11 +1,11 @@
-#  Cloud Resume Challenge
+# 🚀 Cloud Resume Challenge
 
 <div align="center">
 
-[![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
-[![Terraform](https://img.shields.io/badge/Terraform-5E35B1?style=for-the-badge&logo=terraform&logoColor=white)](https://terraform.io/)
-[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+[![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=FF9900)](https://aws.amazon.com/)
+[![Terraform](https://img.shields.io/badge/Terraform-1B1B1F?style=for-the-badge&logo=terraform&logoColor=7B42BC)](https://terraform.io/)
+[![Python](https://img.shields.io/badge/Python-1C1C1C?style=for-the-badge&logo=python&logoColor=3776AB)](https://python.org/)
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-0D1117?style=for-the-badge&logo=github-actions&logoColor=1F6FEB)](https://github.com/features/actions)
 
 **A serverless resume website built on AWS Free Tier with a live visitor counter.**
 
@@ -15,7 +15,7 @@
 
 ---
 
-##  What I Built
+## ✨ What I Built
 
 A full-stack serverless resume that tracks every visitor. **Refresh the page and watch the counter grow.**
 
@@ -31,7 +31,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-##  Project Gallery
+## 🎨 Project Gallery
 
 | Live Resume | Architecture | CI/CD Pipeline |
 |:-----------:|:------------:|:--------------:|
@@ -40,7 +40,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-##  Architecture
+## 🏛️ Architecture
 
 ```mermaid
 graph TB
@@ -84,37 +84,37 @@ graph TB
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat&logo=amazonaws&logoColor=white)
-![S3](https://img.shields.io/badge/Amazon_S3-569A31?style=flat&logo=amazons3&logoColor=white)
-![CloudFront](https://img.shields.io/badge/CloudFront-232F3E?style=flat&logo=amazonaws&logoColor=white)
-![API Gateway](https://img.shields.io/badge/API_Gateway-FF4F8B?style=flat&logo=amazonaws&logoColor=white)
-![Lambda](https://img.shields.io/badge/Lambda-FF9900?style=flat&logo=awslambda&logoColor=white)
-![DynamoDB](https://img.shields.io/badge/DynamoDB-2C1B47?style=flat&logo=amazondynamodb&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-5E35B1?style=flat&logo=terraform&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazonaws&logoColor=FF9900)
+![S3](https://img.shields.io/badge/Amazon_S3-1B1B1F?style=flat&logo=amazons3&logoColor=569A31)
+![CloudFront](https://img.shields.io/badge/CloudFront-0D1117?style=flat&logo=amazonaws&logoColor=FF9900)
+![API Gateway](https://img.shields.io/badge/API_Gateway-1C1C1C?style=flat&logo=amazonaws&logoColor=FF4F8B)
+![Lambda](https://img.shields.io/badge/Lambda-232F3E?style=flat&logo=awslambda&logoColor=FF9900)
+![DynamoDB](https://img.shields.io/badge/DynamoDB-0D1117?style=flat&logo=amazondynamodb&logoColor=527FFF)
+![Terraform](https://img.shields.io/badge/Terraform-1B1B1F?style=flat&logo=terraform&logoColor=7B42BC)
+![Python](https://img.shields.io/badge/Python-1C1C1C?style=flat&logo=python&logoColor=3776AB)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-0D1117?style=flat&logo=github-actions&logoColor=1F6FEB)
 
 ---
 
-##  What Broke & How I Fixed It
+## 🔧 What Broke & How I Fixed It
 
 ### ⚠️ 504 Gateway Timeout — CloudFront could not reach S3
 
 S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-us-e[...]
 
-###  Missing Authentication Token — API Gateway path mismatch
+### 🚫 Missing Authentication Token — API Gateway path mismatch
 
 The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to i[...]
 
-###  CORS blocked the frontend from calling the API
+### 🛡️ CORS blocked the frontend from calling the API
 
 Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Respo[...]
 
 ---
 
-##  Cost Breakdown
+## 💳 Cost Breakdown
 
 | Service | Usage | Cost |
 |---------|-------|------|
@@ -129,7 +129,7 @@ Entirely within AWS Free Tier.
 
 ---
 
-##  Quick Deploy
+## 🚀 Quick Deploy
 
 ```bash
 git clone https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge.git
@@ -148,11 +148,11 @@ terraform destroy  # Clean up when done — zero cost
 
 Cloud & DevOps enthusiast. **AWS Certified Cloud Practitioner.** Built this to prove I can ship production infrastructure, not just study certifications.
 
--  **Open to:** Cloud Engineering | DevOps | SRE roles
--  **Location:** Pretoria, South Africa
--  **Email:** [stanleyjnrkanzara@gmail.com](mailto:stanleyjnrkanzara@gmail.com)
--  **LinkedIn:** [linkedin.com/in/stanley-jnr-kanzara](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
--  **GitHub:** [github.com/stanleyjnrkanzara-wq](https://github.com/stanleyjnrkanzara-wq)
+- 🔭 **Open to:** Cloud Engineering | DevOps | SRE roles
+- 📍 **Location:** Pretoria, South Africa
+- 📧 **Email:** [stanleyjnrkanzara@gmail.com](mailto:stanleyjnrkanzara@gmail.com)
+- 💼 **LinkedIn:** [linkedin.com/in/stanley-jnr-kanzara](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
+- 🐙 **GitHub:** [github.com/stanleyjnrkanzara-wq](https://github.com/stanleyjnrkanzara-wq)
 
 **Let's build something together. Reach out — I am actively interviewing.**
 
