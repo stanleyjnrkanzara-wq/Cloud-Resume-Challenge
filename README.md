@@ -15,7 +15,7 @@
 
 ---
 
-## ✨ What I Built
+##  What I Built
 
 A full-stack serverless resume that tracks every visitor. **Refresh the page and watch the counter grow.**
 
