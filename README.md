@@ -43,34 +43,33 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 ## 🏗️ Architecture
 
 ```mermaid
-flowchart LR
-    subgraph Frontend
-        A[👤 Visitor] --> B[CloudFront CDN<br/>HTTPS | Edge Cache]
-        B --> C[S3 Bucket<br/>Static Website]
-    end
-
-    B --> D[API Gateway<br/>Stage: prod | /count]
-
-    subgraph API
-        D --> E[Lambda<br/>Python 3.11 | Boto3]
-    end
-
-    subgraph Data
-        E --> F[DynamoDB<br/>Atomic Increment]
-    end
-
-    subgraph Automation
-        G[GitHub] --> H[GitHub Actions]
-        H --> I[Terraform]
-        I --> B
-    end
-
-    style A fill:#e9ecef
-    style B fill:#FF9900,color:#fff
-    style C fill:#FF9900,color:#fff
-    style D fill:#FF9900,color:#fff
-    style E fill:#FF9900,color:#fff
-    style F fill:#fff3cd
+graph TB
+    User["👤 Visitor<br/>Your Browser"]
+    CF["⚡ CloudFront<br/>Global CDN + HTTPS"]
+    S3["📁 S3 Bucket<br/>Static Site Hosting"]
+    APIGW["🔗 API Gateway<br/>REST Endpoint"]
+    Lambda["🐍 Lambda<br/>Python 3.11"]
+    DDB["📊 DynamoDB<br/>Atomic Counter"]
+    
+    GH["🐙 GitHub<br/>Source Code"]
+    GHA["🤖 GitHub Actions<br/>CI/CD Pipeline"]
+    TF["🏗️ Terraform<br/>Infrastructure as Code"]
+    
+    User -->|Visit| CF
+    CF -->|Serve| S3
+    S3 -->|fetch /count| APIGW
+    APIGW -->|invoke| Lambda
+    Lambda -->|increment| DDB
+    DDB -->|return count| Lambda
+    Lambda -->|response| APIGW
+    APIGW -->|JSON| S3
+    S3 -->|display| User
+    
+    GH -->|push| GHA
+    GHA -->|deploy| TF
+    TF -->|provision| CF
+    
+    classDef default fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
 ```
 
 | Layer | Service | Purpose |
@@ -103,15 +102,15 @@ flowchart LR
 
 ### 504 Gateway Timeout — CloudFront could not reach S3
 
-S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-website-us-east-1.amazonaws.com`) with HTTP-only origin protocol.
+S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-us-east-1.amazonaws.com/bucket-name`), enabling static website hosting in S3 settings, and CloudFront now gets unsigned public access.
 
 ### Missing Authentication Token — API Gateway path mismatch
 
-The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree, redeployed the stage, and the counter started working.
+The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to include the proper path.
 
 ### CORS blocked the frontend from calling the API
 
-Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Response, then redeployed.
+Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Response, and tested with curl.
 
 ---
 
