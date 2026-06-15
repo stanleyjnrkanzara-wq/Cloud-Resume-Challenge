@@ -24,7 +24,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
               ↓
          JavaScript calls API
               ↓
-     API Gateway → Lambda (Python) → DynamoDB (counter)
+      API Gateway → Lambda (Python) → DynamoDB (counter)
 ```
 
 **Every layer is real, every service is managed, and the bill is $0.00.**
@@ -45,14 +45,14 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 ```mermaid
 graph TB
     User["👤 Visitor<br/>Your Browser"]
-    CF["⚡ CloudFront<br/>Global CDN + HTTPS"]
-    S3["📁 S3 Bucket<br/>Static Site Hosting"]
-    APIGW["🔗 API Gateway<br/>REST Endpoint"]
-    Lambda["🐍 Lambda<br/>Python 3.11"]
-    DDB["📊 DynamoDB<br/>Atomic Counter"]
+    CF["☁️ CloudFront<br/>Global CDN + HTTPS"]
+    S3["🪣 S3 Bucket<br/>Static Site Hosting"]
+    APIGW["🔌 API Gateway<br/>REST Endpoint"]
+    Lambda["Λ Lambda<br/>Python 3.11"]
+    DDB["⚙️ DynamoDB<br/>Atomic Counter"]
     
     GH["🐙 GitHub<br/>Source Code"]
-    GHA["🤖 GitHub Actions<br/>CI/CD Pipeline"]
+    GHA["⚙️ GitHub Actions<br/>CI/CD Pipeline"]
     TF["🏗️ Terraform<br/>Infrastructure as Code"]
     
     User -->|Visit| CF
