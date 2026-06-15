@@ -40,7 +40,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 🏛️ Architecture
+##  Architecture
 
 ```mermaid
 graph TB
@@ -100,15 +100,15 @@ graph TB
 
 ##  What Broke & How I Fixed It
 
-### ⚠️ 504 Gateway Timeout — CloudFront could not reach S3
+###  504 Gateway Timeout — CloudFront could not reach S3
 
 S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-us-e[...]
 
-### 🚫 Missing Authentication Token — API Gateway path mismatch
+###  Missing Authentication Token — API Gateway path mismatch
 
 The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to i[...]
 
-### 🛡️ CORS blocked the frontend from calling the API
+###  CORS blocked the frontend from calling the API
 
 Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Respo[...]
 
@@ -144,15 +144,15 @@ terraform destroy  # Clean up when done — zero cost
 
 ---
 
-## 👤 About Me
+##  About Me
 
 Cloud & DevOps enthusiast. **AWS Certified Cloud Practitioner.** Built this to prove I can ship production infrastructure, not just study certifications.
 
-- 🔭 **Open to:** Cloud Engineering | DevOps | SRE roles
-- 📍 **Location:** Pretoria, South Africa
-- 📧 **Email:** [stanleyjnrkanzara@gmail.com](mailto:stanleyjnrkanzara@gmail.com)
-- 💼 **LinkedIn:** [linkedin.com/in/stanley-jnr-kanzara](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
-- 🐙 **GitHub:** [github.com/stanleyjnrkanzara-wq](https://github.com/stanleyjnrkanzara-wq)
+-  **Open to:** Cloud Engineering | DevOps | SRE roles
+-  **Location:** Pretoria, South Africa
+-  **Email:** [stanleyjnrkanzara@gmail.com](mailto:stanleyjnrkanzara@gmail.com)
+-  **LinkedIn:** [linkedin.com/in/stanley-jnr-kanzara](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
+-  **GitHub:** [github.com/stanleyjnrkanzara-wq](https://github.com/stanleyjnrkanzara-wq)
 
 **Let's build something together. Reach out — I am actively interviewing.**
 
