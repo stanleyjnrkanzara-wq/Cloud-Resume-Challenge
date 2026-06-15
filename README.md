@@ -1,4 +1,4 @@
-# ☁️ Cloud Resume Challenge
+##  Cloud Resume Challenge
 
 <div align="center">
 
@@ -15,7 +15,7 @@
 
 ---
 
-## 🎯 What I Built
+##  What I Built
 
 A full-stack serverless resume that tracks every visitor. **Refresh the page and watch the counter grow.**
 
@@ -31,11 +31,11 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 📸 Project Gallery
+##  Project Gallery
 
 | Live Resume | Architecture | CI/CD Pipeline |
 |:-----------:|:------------:|:--------------:|
-| 🌐 Dark-themed UI | 🏗️ Serverless Stack | ⚙️ Auto-Deploy |
+|  Dark-themed UI |  Serverless Stack |  Auto-Deploy |
 | Interactive visitor counter | Full AWS infrastructure | Push-to-production |
 | Real-time counter updates | DynamoDB + Lambda | GitHub Actions |
 
@@ -43,7 +43,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 <img width="796" alt="Cloud Resume Architecture" src="https://github.com/user-attachments/assets/81a026f1-1a1a-455c-901a-e2aca41768c6" />
 
@@ -59,7 +59,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?style=flat&logo=amazonaws&logoColor=white)
 ![S3](https://img.shields.io/badge/Amazon_S3-569A31?style=flat&logo=amazons3&logoColor=white)
@@ -73,7 +73,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ---
 
-## 🐛 What Broke & How I Fixed It
+##  What Broke & How I Fixed It
 
 ### 504 Gateway Timeout — CloudFront could not reach S3
 
@@ -89,7 +89,7 @@ Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/coun
 
 ---
 
-## 💰 Cost Breakdown
+##  Cost Breakdown
 
 | Service | Usage | Cost |
 |---------|-------|------|
@@ -104,7 +104,7 @@ Entirely within AWS Free Tier.
 
 ---
 
-## 🚀 Quick Deploy
+##  Quick Deploy
 
 ```bash
 git clone https://github.com/stanleyjnrkanzara-wq/Cloud-Resume-Challenge.git
@@ -119,15 +119,15 @@ terraform destroy  # Clean up when done — zero cost
 
 ---
 
-## 👨‍💻 About Me
+##  About Me
 
 Cloud & DevOps enthusiast. **AWS Certified Cloud Practitioner.** Built this to prove I can ship production infrastructure, not just study certifications.
 
-- 🔭 **Open to:** Cloud Engineering | DevOps | SRE roles
-- 📍 **Location:** Pretoria, South Africa
-- 📧 **Email:** [stanleyjnrkanzara@gmail.com](mailto:stanleyjnrkanzara@gmail.com)
-- 💼 **LinkedIn:** [linkedin.com/in/stanley-jnr-kanzara](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
-- 🐙 **GitHub:** [github.com/stanleyjnrkanzara-wq](https://github.com/stanleyjnrkanzara-wq)
+-  **Open to:** Cloud Engineering | DevOps | SRE roles
+-  **Location:** Pretoria, South Africa
+-  **Email:** [stanleyjnrkanzara@gmail.com](mailto:stanleyjnrkanzara@gmail.com)
+-  **LinkedIn:** [linkedin.com/in/stanley-jnr-kanzara](https://www.linkedin.com/in/stanley-jnr-kanzara-0081133a8)
+-  **GitHub:** [github.com/stanleyjnrkanzara-wq](https://github.com/stanleyjnrkanzara-wq)
 
 **Let's build something together. Reach out — I am actively interviewing.**
 
