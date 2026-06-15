@@ -1,5 +1,5 @@
-<img width="796" height="482" alt="Screenshot 2026-06-14 221042" src="https://github.com/user-attachments/assets/81a026f1-1a1a-455c-901a-e2aca41768c6" />
-#  Cloud Resume Challenge
+
+##  Cloud Resume Challenge
 
 <div align="center">
 
@@ -42,6 +42,8 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 ---
 
 ##  Architecture
+
+<img width="796" height="482" alt="Screenshot 2026-06-14 221042" src="https://github.com/user-attachments/assets/81a026f1-1a1a-455c-901a-e2aca41768c6" />
 
 ```mermaid
 graph TB
