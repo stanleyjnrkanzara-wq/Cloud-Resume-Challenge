@@ -14,6 +14,37 @@
 </div>
 
 ---
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Frontend
+        A[Visitor 🧑‍💻] --> B[CloudFront CDN<br/>HTTPS | Edge Cache]
+        B --> C[S3 Bucket<br/>Static Website]
+    end
+    
+    B --> D[API Gateway<br/>Stage: prod | /count]
+    
+    subgraph API
+        D --> E[Lambda<br/>Python 3.11 | Boto3]
+    end
+    
+    subgraph Data
+        E --> F[DynamoDB<br/>Atomic Increment]
+    end
+    
+    subgraph Automation
+        G[GitHub] --> H[GitHub Actions]
+        H --> I[Terraform]
+        I --> B
+    end
+    
+    style A fill:#e9ecef
+    style B fill:#FF9900,color:#fff
+    style C fill:#FF9900,color:#fff
+    style D fill:#FF9900,color:#fff
+    style E fill:#FF9900,color:#fff
+    style F fill:#fff3cd
 
 ## What I Built
 
