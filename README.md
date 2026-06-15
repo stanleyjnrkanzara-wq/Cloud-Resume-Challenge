@@ -60,15 +60,15 @@ graph TB
     GHA -->|deploy| TF
     TF -->|provision| CF
     
-    style User fill:#e9ecef,stroke:#495057,stroke-width:2px
-    style CF fill:#FF9900,stroke:#cc7700,stroke-width:2px,color:#fff
-    style S3 fill:#FF9900,stroke:#cc7700,stroke-width:2px,color:#fff
-    style APIGW fill:#FF9900,stroke:#cc7700,stroke-width:2px,color:#fff
-    style Lambda fill:#FF9900,stroke:#cc7700,stroke-width:2px,color:#fff
-    style DDB fill:#FF9900,stroke:#cc7700,stroke-width:2px,color:#fff
-    style GH fill:#333,stroke:#000,stroke-width:2px,color:#fff
-    style GHA fill:#2088FF,stroke:#0055aa,stroke-width:2px,color:#fff
-    style TF fill:#623CE4,stroke:#4c1fa8,stroke-width:2px,color:#fff
+    style User fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style CF fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style S3 fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style APIGW fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style Lambda fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style DDB fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style GH fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style GHA fill:#f0f0f0,stroke:#333,stroke-width:2px
+    style TF fill:#f0f0f0,stroke:#333,stroke-width:2px
 ```
 
 | Layer | Service | Purpose |
