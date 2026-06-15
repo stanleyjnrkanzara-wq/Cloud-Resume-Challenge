@@ -3,7 +3,7 @@
 <div align="center">
 
 [![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
-[![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white)](https://terraform.io/)
+[![Terraform](https://img.shields.io/badge/Terraform-5E35B1?style=for-the-badge&logo=terraform&logoColor=white)](https://terraform.io/)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
 
@@ -24,7 +24,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
               ↓
          JavaScript calls API
               ↓
-    API Gateway → Lambda (Python) → DynamoDB (counter)
+     API Gateway → Lambda (Python) → DynamoDB (counter)
 ```
 
 **Every layer is real, every service is managed, and the bill is $0.00.**
@@ -69,7 +69,7 @@ graph TB
     GHA -->|deploy| TF
     TF -->|provision| CF
     
-    classDef default fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
+    classDef default fill:#2C1B47,stroke:#5E35B1,stroke-width:3px,color:#fff
 ```
 
 | Layer | Service | Purpose |
@@ -91,8 +91,8 @@ graph TB
 ![CloudFront](https://img.shields.io/badge/CloudFront-232F3E?style=flat&logo=amazonaws&logoColor=white)
 ![API Gateway](https://img.shields.io/badge/API_Gateway-FF4F8B?style=flat&logo=amazonaws&logoColor=white)
 ![Lambda](https://img.shields.io/badge/Lambda-FF9900?style=flat&logo=awslambda&logoColor=white)
-![DynamoDB](https://img.shields.io/badge/DynamoDB-4053D6?style=flat&logo=amazondynamodb&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=flat&logo=terraform&logoColor=white)
+![DynamoDB](https://img.shields.io/badge/DynamoDB-2C1B47?style=flat&logo=amazondynamodb&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-5E35B1?style=flat&logo=terraform&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
 
@@ -102,15 +102,15 @@ graph TB
 
 ### 504 Gateway Timeout — CloudFront could not reach S3
 
-S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-us-east-1.amazonaws.com/bucket-name`), enabling static website hosting in S3 settings, and CloudFront now gets unsigned public access.
+S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-us-e[...]
 
 ### Missing Authentication Token — API Gateway path mismatch
 
-The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to include the proper path.
+The invoke URL needs the full path: `https://{id}.execute-api.us-east-1.amazonaws.com/prod/count`. The stage (`prod`) and resource (`/count`) must both be present. I rebuilt the API resource tree to i[...]
 
 ### CORS blocked the frontend from calling the API
 
-Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Response, and tested with curl.
+Browsers enforce cross-origin security. I enabled CORS on the API Gateway `/prod/count` resource with `Access-Control-Allow-Origin: *`, mapped the headers in both Method Response and Integration Respo[...]
 
 ---
 
