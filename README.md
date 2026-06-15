@@ -50,6 +50,9 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 <img width="796" alt="Cloud Resume Architecture" src="https://github.com/user-attachments/assets/81a026f1-1a1a-455c-901a-e2aca41768c6" />
 
+##   SCREENSHOT OF THE TOP OF MY RESUME
+
+<img width="1328" height="622" alt="top of my resume" src="https://github.com/user-attachments/assets/0242f549-2379-4e8e-ab21-f731dce366b9" />
 
 
 
