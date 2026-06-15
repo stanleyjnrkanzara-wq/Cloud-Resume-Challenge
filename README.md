@@ -1,3 +1,4 @@
+<img width="796" height="482" alt="Screenshot 2026-06-14 221042" src="https://github.com/user-attachments/assets/81a026f1-1a1a-455c-901a-e2aca41768c6" />
 #  Cloud Resume Challenge
 
 <div align="center">
