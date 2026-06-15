@@ -50,7 +50,13 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 <img width="796" alt="Cloud Resume Architecture" src="https://github.com/user-attachments/assets/81a026f1-1a1a-455c-901a-e2aca41768c6" />
 
+
+
+
 ##   SCREENSHOT OF THE TOP OF MY RESUME
+
+
+
 
 <img width="1328" height="622" alt="top of my resume" src="https://github.com/user-attachments/assets/0242f549-2379-4e8e-ab21-f731dce366b9" />
 
@@ -77,7 +83,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 ![API Gateway](https://img.shields.io/badge/API_Gateway-FF4F8B?style=flat&logo=amazonaws&logoColor=white)
 ![Lambda](https://img.shields.io/badge/Lambda-FF9900?style=flat&logo=awslambda&logoColor=white)
 ![DynamoDB](https://img.shields.io/badge/DynamoDB-4053D6?style=flat&logo=amazondynamodb&logoColor=white)
-![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=flat&logo=terraform&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-623CE4?style=for-the-badge&logo=terraform&logoColor=white)](https://terraform.io/)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white)
 
@@ -87,7 +93,7 @@ Browser → CloudFront (CDN + HTTPS) → S3 (static site)
 
 ### 504 Gateway Timeout — CloudFront could not reach S3
 
-S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-website-us-east-1.amazonaws.com`).
+S3 has two endpoints: a bucket API endpoint and a static website endpoint. I pointed CloudFront to the bucket endpoint, which requires signed requests. The fix was using the website endpoint (`s3-website-[region].amazonaws.com`).
 
 ### Missing Authentication Token — API Gateway path mismatch
 
